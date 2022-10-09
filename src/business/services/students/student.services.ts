@@ -1,6 +1,6 @@
 import { inject, injectable } from 'inversify';
 import { TYPES } from '../../../types';
-import { StudentRepository } from '../../data/repository/student.repository';
+import { StudentRepository } from '../../data/repository/postgres/student.repository';
 
 @injectable()
 export class StudentService {

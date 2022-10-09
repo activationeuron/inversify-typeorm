@@ -1,14 +1,12 @@
 import { readFile } from 'fs';
 import { inject, injectable } from 'inversify';
 import { DataSource } from 'typeorm';
-import { TYPES } from '../../../types';
-import { dbContext } from '../data-source/pg/db.context';
-import { Student } from '../data-source/pg/entities/Student.entity';
-import { IRepository } from '../interface/common/IRepository';
+import { TYPES } from '../../../../types';
+import { dbContext } from '../../data-source/pg/db.context';
+import { Student } from '../../data-source/pg/entities/Student.entity';
+import { IRepository } from '../../interface/common/IRepository';
 @injectable()
 export class StudentRepository implements IRepository<any> {
-  public pg: DataSource;
-
   // constructor(@inject(TYPES.PGContext) pgContext: PGContext) {
   //   // this.pg = pgContext.;
   //   console.log(pgContext.manager, 'STUDENT reoi');

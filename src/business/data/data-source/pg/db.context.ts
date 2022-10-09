@@ -1,5 +1,7 @@
 import { injectable } from 'inversify';
 import { Column, DataSource, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Group } from './entities/Group.entity';
+import { Roll } from './entities/Roll.entity';
 
 import { Student } from './entities/Student.entity';
 // import { Student } from './entities/Student.entity';
@@ -50,7 +52,7 @@ export const connect = async () => {
     migrationsTableName: 'migrations',
     synchronize: true,
     migrations: ['./migrations/**/*.ts'],
-    entities: [Student],
+    entities: [Student, Roll, Group],
   });
 
   dbContext = await dataSource.initialize();
