@@ -3,9 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "license": "ISC",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
-    "start": "nodemon  index.ts "
+    "build": " rimraf build && npx tsc",
+    "prestart": "npm run build",
+    "start": "node build/index.js",
+    "preserve": "npm run build",
+    "serve": "concurrently \"npx tsc -w\" \"nodemon build/index.js\"",
+    "migrate": "typeorm-ts-node-commonjs migration:run -d ./src/business/data/data-source/pg/dataSource"
   },
   "author": "",
   "dependencies": {
@@ -24,6 +29,7 @@
     "ajv-errors": "^3.0.0",
     "body-parser": "^1.20.0",
     "busboy": "^1.6.0",
+    "concurrently": "^7.4.0",
     "csv-parse": "^5.3.0",
     "express": "^4.18.1",
     "formidable": "^2.0.1",
@@ -32,7 +38,15 @@
     "loki": "^0.30.3",
     "lokijs": "^1.5.12",
     "nodemon": "^2.0.20",
+    "pg": "^8.4.0",
+    "reflect-metadata": "^0.1.13",
     "ts-node": "^10.9.1",
+    "typeorm": "0.3.10",
     "typescript": "^4.8.4"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.10",
+    "ts-node": "10.7.0",
+    "typescript": "4.5.2"
   }
 }

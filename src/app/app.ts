@@ -1,10 +1,13 @@
-import express, { Express } from 'express';
-import busboy from 'busboy';
+import express from 'express';
 import { InversifyExpressServer } from 'inversify-express-utils';
-import { DBContext } from '../business/data/data-source/db.context';
 import { container } from '../container';
-import bodyParser from 'body-parser';
-import './routes/reader/index';
+
+import './routes/student/index';
+// import './routes/group/index';
+// import './routes/roll/index';
+import { TYPES } from '../types';
+import { connect } from '../business/data/data-source/pg/db.context';
+
 export class App {
   private port: number = 8080;
 
@@ -18,7 +21,7 @@ export class App {
     });
 
     const app = server.build();
-
+    await connect();
     app.listen(this.port, () => {
       console.log(`server started at http://localhost:${this.port}`);
     });
